@@ -1,0 +1,10 @@
+<footer>
+  <div class="contenido-pie-de-pagina">
+    {% for link in linklists.footer.links %}
+      <a href="{{ link.url }}">{{ link.title }}</a>
+    {% endfor %}
+  </div>
+  <div class="derechos-de-autor">
+    &copy; {{ 'now' | date: "%Y" }}, {{ shop.name | link_to: '/' }}
+  </div>
+</footer>

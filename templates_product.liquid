@@ -1,0 +1,26 @@
+<div class="producto">
+  <h1>{{ product.title }}</h1>
+  
+  <div class="imagenes-producto">
+    {% for image in product.images %}
+      <img src="{{ image | img_url: 'large' }}" alt="{{ image.alt | escape }}">
+    {% endfor %}
+  </div>
+
+  <div class="detalles-producto">
+    <p>{{ product.description }}</p>
+    
+    <form action="/cart/add" method="post" enctype="multipart/form-data">
+      <select name="id">
+        {% for variant in product.variants %}
+          <option value="{{ variant.id }}">
+            {{ variant.title }} - {{ variant.price | money }}
+          </option>
+        {% endfor %}
+      </select>
+
+      <input type="number" name="quantity" value="1" min="1">
+      <button type="submit">Añadir al Carrito</button>
+    </form>
+  </div>
+</div>
